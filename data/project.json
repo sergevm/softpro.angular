@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0-*",
+    "dependencies": {
+        "MongoDB.Driver": "2.0",
+        "System.Threading.Tasks": "4.0.10-beta-22816",
+        "System.Collections": "4.0.10-beta-22816"
+    },
+
+    "frameworks": {
+        "dnx451": {
+            "dependencies": {}
+        },
+        "dnxcore50": {
+            "dependencies": {
+                "System.Runtime": "4.0.20-*"
+            }
+        }
+    }
+}
