@@ -11,5 +11,10 @@ namespace data.Companies
 		public string Name { get; set; }
 		
 		public string Vat { get; set; }
+		
+		public override string ToString()
+		{
+			return string.Format("{{Id: {0}, Name: {1}, Vat: {2}}}",Id, Name, Vat);
+		}
 	}
 }

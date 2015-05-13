@@ -54,20 +54,27 @@ namespace MyNamespace.Controllers
 
         // POST api/company
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]Company company)
         {
+            _logger.DebugFormat("Post Company: {0}", company);
+            var result = await _companyRepository.Add(company);
+            return this.Created(Request.Path.ToString() + "/" + result.Id, result);
         }
 
         // PUT api/company/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async void Put(string id, [FromBody]Company company)
         {
+            _logger.DebugFormat("Put Company: {0}", company);
+            await _companyRepository.Update(id, company);
         }
 
         // DELETE api/company/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(string id)
         {
+            _logger.DebugFormat("Delete company: {0}", id);
+            await _companyRepository.Delete(id);
         }
     }
 }

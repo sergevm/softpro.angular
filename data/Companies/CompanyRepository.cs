@@ -13,6 +13,12 @@ namespace data.Companies
         Task<IEnumerable<Company>> Find(CompanyFilter filter);
         
         Task<Company> Get(string id);
+        
+        Task<Company> Add(Company company);
+        
+        Task Update(string id, Company company);
+        
+        Task Delete(string id);
     }
     
     public class CompanyRepository : ICompanyRepository
@@ -40,6 +46,24 @@ namespace data.Companies
         {
             var filter = Builders<Company>.Filter.Eq("_id", ObjectId.Parse(id));
             return await GetCollection().Find(filter).SingleAsync();
+        }
+        
+        public async Task<Company> Add(Company company)
+        {
+            await GetCollection().InsertOneAsync(company);
+            return company;
+        }
+        
+        public async Task Update(string id, Company company)
+        {
+            var filter = Builders<Company>.Filter.Eq("_id", ObjectId.Parse(id));
+            await GetCollection().ReplaceOneAsync(filter, company);
+        }
+        
+        public async Task Delete(string id)
+        {
+            var filter = Builders<Company>.Filter.Eq("_id", ObjectId.Parse(id));
+            await GetCollection().DeleteOneAsync(filter);            
         }
         
         private IMongoCollection<Company> GetCollection()
