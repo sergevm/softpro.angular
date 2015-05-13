@@ -1,9 +1,8 @@
 {
     "version": "1.0.0-*",
     "dependencies": {
-        "MongoDB.Driver": "2.0",
-        "System.Threading.Tasks": "4.0.10-beta-22816",
-        "System.Collections": "4.0.10-beta-22816"
+        "MongoDB.Driver": "2.0.0-*",
+        "log4net": "2.0.3-*"
     },
 
     "frameworks": {

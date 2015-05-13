@@ -1,7 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNet.Mvc;
 using data.Companies;
 using System.Threading.Tasks;
+using System.Linq;
+using MongoDB.Driver;
+using log4net;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,6 +16,8 @@ namespace MyNamespace.Controllers
     {
         private readonly ICompanyRepository _companyRepository;
         
+        private readonly ILog _logger = LogManager.GetLogger("CompanyController");
+        
         public CompanyController(ICompanyRepository companyRepository)
         {
             _companyRepository = companyRepository;    
@@ -20,7 +26,12 @@ namespace MyNamespace.Controllers
         [HttpGet]
         public async Task<IEnumerable<Company>> Get()
         {
-            return await _companyRepository.Find(new CompanyFilter());
+            _logger.Debug("Get()");   
+           
+            var companies = await _companyRepository.Find(new CompanyFilter());
+            _logger.DebugFormat("Company count: {0}", companies.Count());
+           
+            return companies;
         }
 
         // GET api/company/5

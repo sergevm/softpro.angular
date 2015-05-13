@@ -1,133 +1,79 @@
 {
   "locked": false,
-  "version": -9997,
-  "targets": {
-    "DNX,Version=v4.5.1": {
-      "MongoDB.Bson/2.0.0": {
-        "compile": [
-          "lib/net45/MongoDB.Bson.dll"
-        ],
-        "runtime": [
-          "lib/net45/MongoDB.Bson.dll"
-        ]
-      },
-      "MongoDB.Driver/2.0.0": {
-        "dependencies": {
-          "MongoDB.Bson": "2.0.0",
-          "MongoDB.Driver.Core": "2.0.0"
-        },
-        "compile": [
-          "lib/net45/MongoDB.Driver.dll"
-        ],
-        "runtime": [
-          "lib/net45/MongoDB.Driver.dll"
-        ]
-      },
-      "MongoDB.Driver.Core/2.0.0": {
-        "dependencies": {
-          "MongoDB.Bson": "2.0.0"
-        },
-        "compile": [
-          "lib/net45/MongoDB.Driver.Core.dll"
-        ],
-        "runtime": [
-          "lib/net45/MongoDB.Driver.Core.dll"
-        ]
-      },
-      "System.Collections/4.0.10-beta-22816": {
-        "dependencies": {
-          "System.Runtime": "4.0.20-beta-22816"
-        },
-        "frameworkAssemblies": [
-          "mscorlib",
-          "System",
-          "System.Core"
-        ],
-        "compile": [
-          "lib/net45/System.Collections.dll"
-        ],
-        "runtime": [
-          "lib/net45/System.Collections.dll"
-        ]
-      },
-      "System.Runtime/4.0.20-beta-22816": {
-        "frameworkAssemblies": [
-          "mscorlib",
-          "System",
-          "System.ComponentModel.Composition",
-          "System.Core"
-        ],
-        "compile": [
-          "lib/net45/System.Runtime.dll"
-        ],
-        "runtime": [
-          "lib/net45/System.Runtime.dll"
-        ]
-      },
-      "System.Threading.Tasks/4.0.10-beta-22816": {
-        "dependencies": {
-          "System.Runtime": "4.0.20-beta-22816"
-        },
-        "frameworkAssemblies": [
-          "mscorlib",
-          "System.Core"
-        ],
-        "compile": [
-          "lib/net45/System.Threading.Tasks.dll"
-        ],
-        "runtime": [
-          "lib/net45/System.Threading.Tasks.dll"
-        ]
-      }
-    },
-    "DNXCore,Version=v5.0": {
-      "MongoDB.Bson/2.0.0": {},
-      "MongoDB.Driver/2.0.0": {
-        "dependencies": {
-          "MongoDB.Bson": "2.0.0",
-          "MongoDB.Driver.Core": "2.0.0"
-        }
-      },
-      "MongoDB.Driver.Core/2.0.0": {
-        "dependencies": {
-          "MongoDB.Bson": "2.0.0"
-        }
-      },
-      "System.Collections/4.0.10-beta-22816": {
-        "dependencies": {
-          "System.Runtime": "4.0.20-beta-22816"
-        },
-        "compile": [
-          "lib/contract/System.Collections.dll"
-        ],
-        "runtime": [
-          "lib/aspnetcore50/System.Collections.dll"
-        ]
-      },
-      "System.Runtime/4.0.20-beta-22907": {
-        "compile": [
-          "lib/contract/System.Runtime.dll"
-        ],
-        "runtime": [
-          "lib/aspnetcore50/System.Runtime.dll"
-        ]
-      },
-      "System.Threading.Tasks/4.0.10-beta-22816": {
-        "dependencies": {
-          "System.Runtime": "4.0.20-beta-22816"
-        },
-        "compile": [
-          "lib/contract/System.Threading.Tasks.dll"
-        ],
-        "runtime": [
-          "lib/aspnetcore50/System.Threading.Tasks.dll"
-        ]
-      }
-    }
+  "version": -9998,
+  "projectFileDependencyGroups": {
+    "": [
+      "MongoDB.Driver >= 2.0.0-*",
+      "log4net >= 2.0.3-*"
+    ],
+    "DNX,Version=v4.5.1": [],
+    "DNXCore,Version=v5.0": [
+      "System.Runtime >= 4.0.20-*"
+    ]
   },
   "libraries": {
+    "log4net/2.0.3": {
+      "serviceable": false,
+      "sha": "rxMHzK5efGPo5XtRnuUGO4tfW5l74Aji6kVmtMAt2SgcB5PHBNtNY7yj2LCI2VtKrLPO7kCKR6kH6lIZggq3Gg==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net40-full/log4net.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net40-full/log4net.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        }
+      },
+      "files": [
+        "log4net.2.0.3.nupkg",
+        "log4net.2.0.3.nupkg.sha512",
+        "log4net.nuspec",
+        "lib/net10-full/log4net.dll",
+        "lib/net10-full/log4net.xml",
+        "lib/net11-full/log4net.dll",
+        "lib/net11-full/log4net.xml",
+        "lib/net20-full/log4net.dll",
+        "lib/net20-full/log4net.xml",
+        "lib/net35-client/log4net.dll",
+        "lib/net35-client/log4net.xml",
+        "lib/net35-full/log4net.dll",
+        "lib/net35-full/log4net.xml",
+        "lib/net40-client/log4net.dll",
+        "lib/net40-client/log4net.xml",
+        "lib/net40-full/log4net.dll",
+        "lib/net40-full/log4net.xml"
+      ]
+    },
     "MongoDB.Bson/2.0.0": {
-      "sha512": "oij2O4yegOKc6zZByxhbuILQIqT0xbUv9DHAt7HdQTzvlOJ7WgKwsMsoQR6VO4qd8PntGvcC9o/sNAj3KdndKA==",
+      "serviceable": false,
+      "sha": "oij2O4yegOKc6zZByxhbuILQIqT0xbUv9DHAt7HdQTzvlOJ7WgKwsMsoQR6VO4qd8PntGvcC9o/sNAj3KdndKA==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net45/MongoDB.Bson.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net45/MongoDB.Bson.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        }
+      },
       "files": [
         "License.rtf",
         "MongoDB.Bson.2.0.0.nupkg",
@@ -138,7 +84,32 @@
       ]
     },
     "MongoDB.Driver/2.0.0": {
-      "sha512": "MloX+kZsJsrDqtCRZShRRwcVbSUdj7II98gl7aXcXfCKXEFMWn3931o39YTMv6nwN/Z0MxkVJ0r68Vr1nO3pbw==",
+      "serviceable": false,
+      "sha": "MloX+kZsJsrDqtCRZShRRwcVbSUdj7II98gl7aXcXfCKXEFMWn3931o39YTMv6nwN/Z0MxkVJ0r68Vr1nO3pbw==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "MongoDB.Bson": "2.0.0",
+            "MongoDB.Driver.Core": "2.0.0"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net45/MongoDB.Driver.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net45/MongoDB.Driver.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "MongoDB.Bson": "2.0.0",
+            "MongoDB.Driver.Core": "2.0.0"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        }
+      },
       "files": [
         "License.rtf",
         "mongodb.driver.2.0.0.nupkg",
@@ -149,7 +120,30 @@
       ]
     },
     "MongoDB.Driver.Core/2.0.0": {
-      "sha512": "mMU89OUiwuSsDW7A2vYEt2VNOpbrD0IR0dtnGyGlIj8IENjIDZG9uXRkIMipW9fl8XBRl8eKWss4AQvTPXtaKg==",
+      "serviceable": false,
+      "sha": "mMU89OUiwuSsDW7A2vYEt2VNOpbrD0IR0dtnGyGlIj8IENjIDZG9uXRkIMipW9fl8XBRl8eKWss4AQvTPXtaKg==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {
+            "MongoDB.Bson": "2.0.0"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net45/MongoDB.Driver.Core.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net45/MongoDB.Driver.Core.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {
+            "MongoDB.Bson": "2.0.0"
+          },
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        }
+      },
       "files": [
         "License.rtf",
         "MongoDB.Driver.Core.2.0.0.nupkg",
@@ -158,34 +152,31 @@
         "lib/net45/MongoDB.Driver.Core.dll"
       ]
     },
-    "System.Collections/4.0.10-beta-22816": {
-      "sha512": "pFwiLMtcsvAx8ZFsSIDVSuPAXXW2z1gkmE/YqiMELlxPVHKyJGrUZoJCIBfVg1HERxMnd1dyj7ffqj5Nx3mzGQ==",
-      "files": [
-        "License.rtf",
-        "System.Collections.4.0.10-beta-22816.nupkg",
-        "System.Collections.4.0.10-beta-22816.nupkg.sha512",
-        "System.Collections.nuspec",
-        "lib/aspnetcore50/System.Collections.dll",
-        "lib/contract/System.Collections.dll",
-        "lib/net45/System.Collections.dll",
-        "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.Collections.dll"
-      ]
-    },
-    "System.Runtime/4.0.20-beta-22816": {
-      "sha512": "BEN6F4aNjbBdDxM8Xhb/MCSDhYmtvA29c1HUBvn0aNAVXaIJECLy2w5YkcscdklIieZCrcYeG2UzIgWlr4+GeQ==",
-      "files": [
-        "License.rtf",
-        "System.Runtime.4.0.20-beta-22816.nupkg",
-        "System.Runtime.4.0.20-beta-22816.nupkg.sha512",
-        "System.Runtime.nuspec",
-        "lib/aspnetcore50/System.Runtime.dll",
-        "lib/contract/System.Runtime.dll",
-        "lib/net45/System.Runtime.dll",
-        "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.Runtime.dll"
-      ]
-    },
     "System.Runtime/4.0.20-beta-22907": {
-      "sha512": "wmDO2Ntm8I/6oRaLXQVSVqFXmkxmQAqTFDwv74sGHZ3358Eyeg1iS5yMTKjk5Mv8s4aVo5Ax2kR4M9Uc+slMqw==",
+      "serviceable": false,
+      "sha": "wmDO2Ntm8I/6oRaLXQVSVqFXmkxmQAqTFDwv74sGHZ3358Eyeg1iS5yMTKjk5Mv8s4aVo5Ax2kR4M9Uc+slMqw==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net45/System.Runtime.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net45/System.Runtime.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/aspnetcore50/System.Runtime.dll"
+          ],
+          "compileAssemblies": [
+            "lib/contract/System.Runtime.dll"
+          ]
+        }
+      },
       "files": [
         "License.rtf",
         "System.Runtime.4.0.20-beta-22907.nupkg",
@@ -196,30 +187,6 @@
         "lib/net45/System.Runtime.dll",
         "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.Runtime.dll"
       ]
-    },
-    "System.Threading.Tasks/4.0.10-beta-22816": {
-      "sha512": "KhcVrI2JzX1oHigWTbf4F/2uhPSkhjquLPYbBVCLe9HGxLDJk2WLgmTbJk7fIus6xWWnWJmhOp0rHERU9M2SQw==",
-      "files": [
-        "License.rtf",
-        "System.Threading.Tasks.4.0.10-beta-22816.nupkg",
-        "System.Threading.Tasks.4.0.10-beta-22816.nupkg.sha512",
-        "System.Threading.Tasks.nuspec",
-        "lib/aspnetcore50/System.Threading.Tasks.dll",
-        "lib/contract/System.Threading.Tasks.dll",
-        "lib/net45/System.Threading.Tasks.dll",
-        "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/System.Threading.Tasks.dll"
-      ]
     }
-  },
-  "projectFileDependencyGroups": {
-    "": [
-      "MongoDB.Driver >= 2.0",
-      "System.Threading.Tasks >= 4.0.10-beta-22816",
-      "System.Collections >= 4.0.10-beta-22816"
-    ],
-    "DNX,Version=v4.5.1": [],
-    "DNXCore,Version=v5.0": [
-      "System.Runtime >= 4.0.20-*"
-    ]
   }
 }

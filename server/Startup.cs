@@ -7,6 +7,10 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Routing;
 using Microsoft.Framework.DependencyInjection;
+
+using MongoDB.Driver;
+using log4net.Config;
+
 using data.Companies;
 
 namespace server
@@ -27,6 +31,9 @@ namespace server
             // services.AddWebApiConventions();
             
             services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddSingleton(typeof(IMongoClient), typeof(MongoClient));
+            
+            BasicConfigurator.Configure();
         }
 
         // Configure is called after ConfigureServices is called.
@@ -34,6 +41,7 @@ namespace server
         {
             // Configure the HTTP request pipeline.
             app.UseStaticFiles();
+            
 
             // Add MVC to the request pipeline.
             app.UseMvc();
