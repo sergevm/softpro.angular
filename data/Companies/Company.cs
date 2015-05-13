@@ -1,8 +1,12 @@
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
 namespace data.Companies
 {
 	public class Company
 	{
-		public object Id { get; set; }
+		[BsonRepresentation(BsonType.ObjectId)]
+		public string Id { get; set; }
 		
 		public string Name { get; set; }
 		

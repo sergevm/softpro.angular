@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 
 using MongoDB.Driver;
+using MongoDB.Bson;
 using log4net;
 
 namespace data.Companies
@@ -10,6 +11,8 @@ namespace data.Companies
     public interface ICompanyRepository
     {
         Task<IEnumerable<Company>> Find(CompanyFilter filter);
+        
+        Task<Company> Get(string id);
     }
     
     public class CompanyRepository : ICompanyRepository
@@ -25,15 +28,24 @@ namespace data.Companies
         
         public async Task<IEnumerable<Company>> Find(CompanyFilter filter)
         {
-            var db = _mongoClient.GetDatabase("test");
-            var companyCollection = db.GetCollection<Company>("companies");
-                       
-            var companies = companyCollection.Find(x => true);
+            var companies = GetCollection().Find(x => true);
             var list = await companies.ToListAsync();
             
             _logger.DebugFormat("List count: {0}", list.Count);
             
             return list;
+        }
+        
+        public async Task<Company> Get(string id)
+        {
+            var filter = Builders<Company>.Filter.Eq("_id", ObjectId.Parse(id));
+            return await GetCollection().Find(filter).SingleAsync();
+        }
+        
+        private IMongoCollection<Company> GetCollection()
+        {
+            var db = _mongoClient.GetDatabase("test");
+            return db.GetCollection<Company>("companies");
         }
     }
 }

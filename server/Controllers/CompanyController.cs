@@ -36,9 +36,20 @@ namespace MyNamespace.Controllers
 
         // GET api/company/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Company> Get(string id)
         {
-            return "value";
+            try
+            {
+            _logger.DebugFormat("Get({0})", id);
+            var company = await _companyRepository.Get(id);
+            
+            return company;
+            }
+            catch(Exception ex)
+            {
+                _logger.Error("An exception occurred:", ex);
+                throw;
+            }
         }
 
         // POST api/company
