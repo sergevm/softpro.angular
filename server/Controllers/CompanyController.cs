@@ -16,7 +16,7 @@ namespace MyNamespace.Controllers
     {
         private readonly ICompanyRepository _companyRepository;
         
-        private readonly ILog _logger = LogManager.GetLogger("CompanyController");
+        private readonly ILog _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
         
         public CompanyController(ICompanyRepository companyRepository)
         {

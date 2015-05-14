@@ -23,7 +23,7 @@ namespace data.Companies
     
     public class CompanyRepository : ICompanyRepository
     {
-        private ILog _logger = LogManager.GetLogger("CompanyRepository");
+        private ILog _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
         
         private IMongoClient _mongoClient;
         
