@@ -30,7 +30,7 @@ module.exports = function(grunt) {
 			},
 			vendor: {	
 				files: [
-					{ cwd: 'vendor/bootstrap/dist/', src: 'css/bootstrap.css', dest: 'build/vendor/', expand: true },
+					{ cwd: 'vendor/bootstrap/dist/', src: 'css/*.*', dest: 'build/vendor/', expand: true },
 					{ cwd: 'vendor/jquery/dist', src: 'jquery.js', dest: 'build/vendor/', expand: true },
 					{ cwd: 'vendor/angular', src: 'angular.js', dest: 'build/vendor/', expand: true },
 					{ cwd: 'vendor/angular-route', src: 'angular-route.js', dest: 'build/vendor/', expand: true }
