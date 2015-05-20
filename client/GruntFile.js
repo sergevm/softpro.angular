@@ -9,6 +9,7 @@ module.exports = function(grunt) {
 				ext: 'html'
 			}
 		},
+		clean: ['build/'],
 		'uglify': {
 			options: {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
@@ -22,25 +23,36 @@ module.exports = function(grunt) {
 				dest: 'build'
 			}
 		},
+		concat: {
+		    options: {
+		      separator: ';',
+		    },
+		    dist: {
+		      src: ['app/**/*.js'],
+		      dest: 'build/app.js',
+		    },
+		  },
 		copy: {
 			content: {
 				files: [
-					{src: '**/*.html', dest: 'build/', cwd: 'app', expand: true}
+					{src: ['**/*.html'], dest: 'build/', cwd: 'app', expand: true}
 				]
 			},
 			vendor: {	
 				files: [
 					{ cwd: 'vendor/bootstrap/dist/', src: 'css/*.*', dest: 'build/vendor/', expand: true },
+					{ cwd: 'vendor/bootstrap/dist/js/', src: 'bootstrap.js', dest: 'build/vendor/', expand: true },
 					{ cwd: 'vendor/jquery/dist', src: 'jquery.js', dest: 'build/vendor/', expand: true },
 					{ cwd: 'vendor/angular', src: 'angular.js', dest: 'build/vendor/', expand: true },
-					{ cwd: 'vendor/angular-route', src: 'angular-route.js', dest: 'build/vendor/', expand: true }
+					{ cwd: 'vendor/angular-route', src: 'angular-route.js', dest: 'build/vendor/', expand: true },
+					{ cwd: 'vendor/angular-ui-grid', src: ['ui-grid.*'], dest: 'build/vendor/', expand: true }
 				]
 			}
 		},
 		watch: {
 			scripts: {
 				files: ['app/**/*.js'],
-				tasks: ['uglify']
+				tasks: ['concat']
 			},
 			html: {
 				files: ['app/**/*.html'],
@@ -62,6 +74,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-concurrent');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	
-	grunt.registerTask('default', ['concurrent:all']);
+	grunt.registerTask('default', ['clean', 'concat', 'copy', 'concurrent:all']);
 };

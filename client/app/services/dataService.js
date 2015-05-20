@@ -1,14 +1,29 @@
+/// <reference path="../../../typings/angularjs/angular.d.ts"/>
 (function() {
-	angular.module('app').service('DataRepository', ['$http', function($http) {
+	angular.module('app').service('DataRepository', ['$q', '$http', 'SERVICE_BASE_URL', function($q, $http, SERVICE_BASE_URL) {
+		
+		function urlFor(specificPart) {
+			return SERVICE_BASE_URL + specificPart;
+		}
+		
 		return {
 			getCompanies: function(callback) {
-				$http.get('http://localhost:5001/api/company')
-				.success(function(data, status, headers, config){
-					callback(data);
-				})
-				.error(function(data, status, headers, config) {
-					// TODO
-				});
+				var deferred = $q.defer();
+				$http.get(urlFor('company'))
+					.success(function(data) {
+						deferred.resolve(data);
+					})
+					.error(deferred.reject);
+					
+				return deferred.promise;
+			},
+			updateCompany: function(company) {
+				var deferred = $q.defer();
+				$http.put(urlFor('company/' + company.Id), company)
+					.success(deferred.resolve)
+					.error(deferred.reject);
+					
+				return deferred.promise;
 			}	
 		};
 	}]);
