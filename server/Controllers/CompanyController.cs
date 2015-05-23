@@ -58,7 +58,8 @@ namespace MyNamespace.Controllers
         {
             _logger.DebugFormat("Post Company: {0}", company);
             var result = await _companyRepository.Add(company);
-            return this.Created(Request.Path.ToString() + "/" + result.Id, result);
+            _logger.DebugFormat("Company created with Id: {0}", company.Id);
+            return this.Created(Request.Path.ToString() + "/" + company.Id, company);
         }
 
         // PUT api/company/5

@@ -3,6 +3,7 @@ angular.module('app').controller('CompanyController', CompanyController);
 CompanyController.$inject = ['$scope', 'DataRepository'];
 
 function CompanyController($scope, DataRepository) {
+	
 	$scope.gridOptions = {};
 	
 	$scope.gridOptions.onRegisterApi = function(gridApi){
@@ -19,7 +20,17 @@ function CompanyController($scope, DataRepository) {
 	}
 	
 	 $scope.saveRow = function( rowEntity ) {
-	    var promise = DataRepository.updateCompany(rowEntity);		
-	    $scope.gridApi.rowEdit.setSavePromise( rowEntity, promise );
+		 if (rowEntity.Id !== undefined) {
+		    var promise = DataRepository.updateCompany(rowEntity);		
+		    $scope.gridApi.rowEdit.setSavePromise( rowEntity, promise );			 
+		 }
+		 else {
+		    var promise = DataRepository.createCompany(rowEntity).then(loadCompanies);		
+		    $scope.gridApi.rowEdit.setSavePromise( rowEntity, promise );			 
+		 }
 	  }; 	
+	  
+	 $scope.addRow = function() {
+		$scope.gridOptions.data.unshift({}); 
+	 };
 }

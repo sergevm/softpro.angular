@@ -24,7 +24,17 @@
 					.error(deferred.reject);
 					
 				return deferred.promise;
-			}	
+			},
+			createCompany: function(company) {
+				var deferred = $q.defer();
+				$http.post(urlFor('company'), company)
+					.success(function(data) {
+						deferred.resolve(data);
+					})
+					.error(deferred.reject);
+					
+				return deferred.promise;
+			}
 		};
 	}]);
 })();
