@@ -5,8 +5,12 @@ angular.module('app')
         link: function(scope, element) {
             scope.gridOptions.columnDefs.unshift(
                 {
-                    name: 'Action', 
-                    cellTemplate: '<input type="button" class="btn btn-primary" value="Show"/>'
+                    displayName: null,
+                    name: 'actions', 
+                    enableCellEdit: false,
+                    enableColumnMenu: false,
+                    width: 80,
+                    cellTemplate: '<button class="btn btn-primary" ng-click="grid.appScope.delete(row)">Delete</button>'
                 });
         }
     };

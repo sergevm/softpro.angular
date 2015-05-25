@@ -8,10 +8,6 @@ function CompanyController($scope, DataRepository) {
 
 	$scope.gridOptions.columnDefs = [
 		{
-			name: 'Action',
-			cellTemplate: '<button class="btn btn-primary" ng-click="grid.appScope.delete(row)">Delete</input>'
-		},
-		{
 			name: 'Name',
 			field: 'Name'
 		},

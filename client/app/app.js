@@ -1,7 +1,7 @@
 /// <reference path="../../typings/angularjs/angular.d.ts"/>
 "use strict";
 
-var app = angular.module('app', ['ngRoute', 'ui.grid', 'ui.grid.cellNav', 'ui.grid.edit', 'ui.grid.rowEdit']);
+var app = angular.module('app', ['ngRoute', 'ui.grid.cellNav', 'ui.grid.edit', 'ui.grid.rowEdit', 'ui.grid.resizeColumns']);
 
 app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/home', {
@@ -33,6 +33,7 @@ app.config(function($provide){
     gridOptions.initialize = function(options) {
       var initOptions;
       initOptions = $delegate.initialize(options);
+      initOptions.enableColumnResizing = true;
       initOptions.enableColumnMenus = true;
       initOptions.rowHeight = 40;
       return initOptions;
