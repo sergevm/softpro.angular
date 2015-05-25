@@ -34,6 +34,14 @@
 					.error(deferred.reject);
 					
 				return deferred.promise;
+			},
+			deleteCompany: function(company) {
+				var deferred = $q.defer();
+				$http.delete(urlFor('company/' + company.Id))
+					.success(deferred.resolve)
+					.error(deferred.reject);
+
+				return deferred.promise;
 			}
 		};
 	}]);
