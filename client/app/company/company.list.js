@@ -1,14 +1,16 @@
+/* global angular */
+
 angular.module('app').controller('CompanyController', CompanyController);
 
-CompanyController.$inject = ['$scope', 'DataRepository'];
+CompanyController.$inject = ['$scope', '$location', 'DataRepository'];
 
-function CompanyController($scope, DataRepository) {
+function CompanyController($scope, $location, DataRepository) {
 	
 	$scope.gridOptions = {};
 
 	$scope.gridOptions.columnDefs = [
 		{
-			name: 'Name',
+			name: 'Name',	
 			field: 'Name'
 		},
 		{
@@ -35,6 +37,10 @@ function CompanyController($scope, DataRepository) {
            var index = $scope.gridOptions.data.indexOf(row.entity);
             $scope.gridOptions.data.splice(index, 1);			
 		});
+	};
+
+	$scope.detail = function(row){
+		$location.path('/company/' + row.entity.Id);
 	};
 	
 	 $scope.saveRow = function(rowEntity) {

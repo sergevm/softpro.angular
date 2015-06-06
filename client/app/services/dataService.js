@@ -17,6 +17,16 @@
 					
 				return deferred.promise;
 			},
+			getCompany: function(id) {
+				var deferred = $q.defer();
+				$http.get(urlFor('company/' + id))
+					.success(function(data) {
+						deferred.resolve(data);
+					})
+					.error(deferred.reject);
+
+				return deferred.promise;
+			},
 			updateCompany: function(company) {
 				var deferred = $q.defer();
 				$http.put(urlFor('company/' + company.Id), company)

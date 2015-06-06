@@ -15,6 +15,12 @@ app.config(['$routeProvider', function($routeProvider) {
 		controller: 'CompanyController',
 		controllerAs: 'vm'
 	});
+
+    $routeProvider.when('/company/:id', {
+        templateUrl: 'company/detail.html',
+        controller: 'CompanyDetailController',
+        controllerAs: 'vm'
+    })
 	
 	$routeProvider.otherwise({redirectTo: '/home'});
 }]);
