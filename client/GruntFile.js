@@ -45,7 +45,9 @@ module.exports = function(grunt) {
 					{ cwd: 'vendor/jquery/dist', src: 'jquery.js', dest: 'build/vendor/', expand: true },
 					{ cwd: 'vendor/angular', src: 'angular.js', dest: 'build/vendor/', expand: true },
 					{ cwd: 'vendor/angular-route', src: 'angular-route.js', dest: 'build/vendor/', expand: true },
-					{ cwd: 'vendor/angular-ui-grid', src: ['ui-grid.*'], dest: 'build/vendor/', expand: true }
+					{ cwd: 'vendor/angular-ui-grid', src: ['ui-grid.*'], dest: 'build/vendor/', expand: true },
+					{ cwd: 'vendor/angular-bootstrap', src: 'ui-bootstrap.js', dest: 'build/vendor/', expand: true},
+					{ cwd: 'vendor/angular-bootstrap', src: 'ui-bootstrap-tpls.js', dest: 'build/vendor/', expand: true}
 				]
 			}
 		},
