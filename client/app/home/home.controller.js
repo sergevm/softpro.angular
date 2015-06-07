@@ -8,7 +8,7 @@
         };
     }
 
-    HomeController.$inject = ['$scope', '$location'];
+    HomeController.$inject = ['$location'];
 
     angular.module('app').controller('HomeController', HomeController);  
 }());
