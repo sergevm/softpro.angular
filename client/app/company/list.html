@@ -2,15 +2,3 @@
 <input type="button" class="btn btn-default" ng-click="addRow()" value="Add"></input>
 <div ui-grid="gridOptions" class="companyListGrid" ui-grid-cellNav ui-grid-edit ui-grid-row-edit ui-grid-resize-columns ui-grid-buttons>
 </div>
-<script type="text/ng-template" id="confirmation.html">
-    <div class="modal-header">
-        <h3 class="modal-title">Please confirm</h3>
-    </div>
-    <div class="modal-body">
-        Are you sure?
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" ng-click="vm.ok()">Ok</button>
-        <button class="btn btn-warning" ng-click="vm.cancel()">Cancel</Button>
-    </div>
-</script>
