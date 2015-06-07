@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+	'use strict';
+	
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		'http-server': {
@@ -60,7 +62,17 @@ module.exports = function(grunt) {
 			html: {
 				files: ['app/**/*.html'],
 				tasks: ['copy:content']
+			},
+			jshint: {
+				files: ['app/**/*.js'],
+				tasks: ['jshint']
 			}
+		},
+		jshint: {
+			options:{
+				jshintrc: '.jshintrc'
+			},
+			files: ['app/**/*.js', 'GruntFile.js']
 		},
 		concurrent: {
 			all: {
@@ -79,6 +91,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-	
+	grunt.loadNpmTasks('grunt-contrib-jshint');
+
 	grunt.registerTask('default', ['clean', 'concat', 'copy', 'concurrent:all']);
 };
