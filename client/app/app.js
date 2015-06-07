@@ -1,7 +1,7 @@
 /// <reference path="../../typings/angularjs/angular.d.ts"/>
 "use strict";
 
-var app = angular.module('app', ['ngRoute', 'ui.bootstrap', 'ui.grid.cellNav', 'ui.grid.edit', 'ui.grid.rowEdit', 'ui.grid.resizeColumns']);
+var app = angular.module('app', ['ngRoute', 'ui.bootstrap', 'angular-confirm', 'ui.grid.cellNav', 'ui.grid.edit', 'ui.grid.rowEdit', 'ui.grid.resizeColumns']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/home', {

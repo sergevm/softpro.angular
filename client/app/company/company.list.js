@@ -2,9 +2,9 @@
 
 angular.module('app').controller('CompanyController', CompanyController);
 
-CompanyController.$inject = ['$scope', '$location', '$modal', 'DataRepository'];
+CompanyController.$inject = ['$scope', '$location', '$confirm', 'DataRepository'];
 
-function CompanyController($scope, $location, $modal, DataRepository) {
+function CompanyController($scope, $location, $confirm, DataRepository) {
 
 	$scope.gridOptions = {};
 
@@ -34,19 +34,13 @@ function CompanyController($scope, $location, $modal, DataRepository) {
 
 	$scope.delete = function(row) {
 
-		var options = {
-			templateUrl: 'confirmation.html',
-			controller: 'ConfirmationController',
-			controllerAs: 'vm',
-			size: 'm'
-		};
-		var modalInstance = $modal.open(options);
-		modalInstance.result.then(function(result) {
-			DataRepository.deleteCompany(row.entity).then(function() {
-	           var index = $scope.gridOptions.data.indexOf(row.entity);
-	            $scope.gridOptions.data.splice(index, 1);			
-			})
-		});
+		$confirm({text: 'Are you sure you want to delete '+ row.entity.Name +'?'}).then(
+			function(result) {
+				DataRepository.deleteCompany(row.entity).then(function() {
+		           var index = $scope.gridOptions.data.indexOf(row.entity);
+		            $scope.gridOptions.data.splice(index, 1);			
+				})			
+			});
 	};
 
 	$scope.detail = function(row){

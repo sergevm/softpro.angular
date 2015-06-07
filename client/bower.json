@@ -20,6 +20,10 @@
   "dependencies": {
     "jquery": "~2.1.4",
     "angular-ui-grid": "~3.0.0-rc.21",
-    "angular-bootstrap": "~0.13.0"
+    "angular-bootstrap": "~0.13.0",
+    "angular-confirm-modal": "https://github.com/Schlogen/angular-confirm.git#~1.0.3"
+  },
+  "resolutions": {
+    "angular": "~1.3.15"
   }
 }
