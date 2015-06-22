@@ -2,13 +2,9 @@
 'use strict';
 
 (function() {
-    describe('Company detail', function() {
+    describe('Company detail controller', function() {
 
-        var $rootScope,
-            $controller,
-            $provide, 
-            $q,
-            $routeParams;
+        var $provide;
 
         beforeEach(function() {
 
@@ -19,31 +15,26 @@
             });
         });
 
-        beforeEach(inject(function(_$rootScope_, _$q_, _$controller_, _$routeParams_) {
-            $q = _$q_;
-            $rootScope = _$rootScope_;
-            $controller = _$controller_;
-            $routeParams = _$routeParams_;
-        }));
-
         describe('Resetting changes', function() {
 
-            var repository =    
-                {
-                    getCompany : function() {
-                        var deferred = $q.defer();
-                        deferred.resolve(company);
-                        return deferred.promise;
-                    }
-                },
-                company = {};        
+            var repository, company = {};        
 
-            beforeEach(function() {
+            beforeEach(inject(function($q, $routeParams) {
+                
+                repository =    
+                    {
+                        getCompany : function() {
+                            var deferred = $q.defer();
+                            deferred.resolve(company);
+                            return deferred.promise;
+                        }
+                    };
+
                 $provide.value('DataRepository', repository);
                 $routeParams.id = 'companyId';
-            });
+            }));
 
-            it('Reloads the selected company', function() {
+            it('Reloads the selected company', inject(function($controller, $rootScope) {
 
                 spyOn(repository, 'getCompany').andCallThrough();
 
@@ -54,9 +45,9 @@
                 $rootScope.$apply();
 
                 expect(repository.getCompany).toHaveBeenCalledWith('companyId');
-            });
+            }));
 
-            it('Sets the company on the scope', function() {
+            it('Sets the company on the scope', inject(function($controller, $rootScope) {
 
                 var detailController = $controller('CompanyDetailController');
                 detailController.reset();
@@ -65,32 +56,23 @@
                 $rootScope.$apply();
 
                 expect(detailController.company).toBe(company);                
-            });
+            }));
         });
 
         describe('Saving changes', function() {
             
-            var nullPromise = function() { return { then: function() {}};},
-                repository =    {
-                                    'getCompany': nullPromise,
-                                    'updateCompany': nullPromise
-                                },
-                company = {};
+            var company = {};
 
-            beforeEach(function() {
-                $provide.value('DataRepository', repository);
-            });
-
-            it('Updates the loaded company', function() {
+            it('Updates the loaded company', inject(function($controller, DataRepository) {
                 
-                spyOn(repository, 'updateCompany');
+                spyOn(DataRepository, 'updateCompany');
 
                 var detailController = $controller('CompanyDetailController');
                 detailController.company = company;
                 detailController.save();
 
-                expect(repository.updateCompany).toHaveBeenCalledWith(company);
-            });
+                expect(DataRepository.updateCompany).toHaveBeenCalledWith(company);
+            }));
         });
     });
 }());
