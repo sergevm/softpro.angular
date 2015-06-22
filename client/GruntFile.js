@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 				tasks: ['copy:content']
 			},
 			jshint: {
-				files: ['app/**/*.js'],
+				files: ['app/**/*.js', 'test/**/*.js'],
 				tasks: ['jshint']
 			}
 		},
