@@ -1,7 +1,8 @@
+/* global inject */
 'use strict';
 
 (function() {
-    describe("Company detail", function() {
+    describe('Company detail', function() {
 
         var $rootScope,
             $controller,
@@ -25,11 +26,11 @@
             $routeParams = _$routeParams_;
         }));
 
-        describe("Resetting changes", function() {
+        describe('Resetting changes', function() {
 
             var repository =    
                 {
-                    getCompany : function(id) {
+                    getCompany : function() {
                         var deferred = $q.defer();
                         deferred.resolve(company);
                         return deferred.promise;
@@ -55,7 +56,7 @@
                 expect(repository.getCompany).toHaveBeenCalledWith('companyId');
             });
 
-            it("Sets the company on the scope", function() {
+            it('Sets the company on the scope', function() {
 
                 var detailController = $controller('CompanyDetailController');
                 detailController.reset();
@@ -69,7 +70,7 @@
 
         describe('Saving changes', function() {
             
-            var nullPromise = function() { return { then: function() {}}},
+            var nullPromise = function() { return { then: function() {}};},
                 repository =    {
                                     'getCompany': nullPromise,
                                     'updateCompany': nullPromise
@@ -80,7 +81,7 @@
                 $provide.value('DataRepository', repository);
             });
 
-            it("Updates the loaded company", function() {
+            it('Updates the loaded company', function() {
                 
                 spyOn(repository, 'updateCompany');
 
