@@ -2,44 +2,69 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
+using System.Threading.Tasks;
+using log4net;
 
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using Data.Projects;
 
 namespace MyNamespace.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/project")]
     public class ProjectController : Controller
     {
-        // GET: api/values
+        private readonly IProjectRepository _projectRepository;
+
+        private readonly ILog _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
+ 
+        public ProjectController(IProjectRepository projectRepository)
+        {
+            _projectRepository = projectRepository;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<Project>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await _projectRepository.Find(new ProjectFilter());
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<Project> Get(string id)
         {
-            return "value";
+            try
+            {
+            _logger.DebugFormat("Get({0})", id);
+            var project = await _projectRepository.Get(id);
+
+            return project;
+            }
+            catch(Exception ex)
+            {
+                _logger.Error("An exception occurred:", ex);
+                throw;
+            }
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]Project project)
         {
+            _logger.DebugFormat("Post Project: {0}", project);
+            var result = await _projectRepository.Add(project);
+            _logger.DebugFormat("Project created with Id: {0}", project.Id);
+            return this.Created(Request.Path.ToString() + "/" + project.Id, project);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async void Put(string id, [FromBody]Project project)
         {
+            _logger.DebugFormat("Put Project: {0}", project);
+            await _projectRepository.Update(id, project);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(string id)
         {
+            _logger.DebugFormat("Delete project: {0}", id);
+            await _projectRepository.Delete(id);
         }
     }
 }

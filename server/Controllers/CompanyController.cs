@@ -15,22 +15,22 @@ namespace MyNamespace.Controllers
     public class CompanyController : Controller
     {
         private readonly ICompanyRepository _companyRepository;
-        
+
         private readonly ILog _logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType.FullName);
-        
+
         public CompanyController(ICompanyRepository companyRepository)
         {
-            _companyRepository = companyRepository;    
+            _companyRepository = companyRepository;
         }
         // GET: api/company
         [HttpGet]
         public async Task<IEnumerable<Company>> Get()
         {
-            _logger.Debug("Get()");   
-           
+            _logger.Debug("Get()");
+                       
             var companies = await _companyRepository.Find(new CompanyFilter());
             _logger.DebugFormat("Company count: {0}", companies.Count());
-           
+
             return companies;
         }
 
@@ -42,7 +42,7 @@ namespace MyNamespace.Controllers
             {
             _logger.DebugFormat("Get({0})", id);
             var company = await _companyRepository.Get(id);
-            
+
             return company;
             }
             catch(Exception ex)

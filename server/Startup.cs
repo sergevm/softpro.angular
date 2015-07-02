@@ -12,6 +12,7 @@ using MongoDB.Driver;
 using log4net.Config;
 
 using data.Companies;
+using Data.Projects;
 
 namespace server
 {
@@ -28,6 +29,7 @@ namespace server
             services.AddMvc();
             
             services.AddTransient<ICompanyRepository, CompanyRepository>();
+            services.AddTransient<IProjectRepository, ProjectRepository>();
             services.AddSingleton(typeof(IMongoClient), typeof(MongoClient));
             
             BasicConfigurator.Configure();
