@@ -24,9 +24,7 @@
                 repository =    
                     {
                         getCompany : function() {
-                            var deferred = $q.defer();
-                            deferred.resolve(company);
-                            return deferred.promise;
+                            return $q.when(company);
                         }
                     };
 
