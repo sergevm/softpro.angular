@@ -27,7 +27,7 @@ namespace MyNamespace.Controllers
         public async Task<IEnumerable<Company>> Get()
         {
             _logger.Debug("Get()");
-                       
+
             var companies = await _companyRepository.Find(new CompanyFilter());
             _logger.DebugFormat("Company count: {0}", companies.Count());
 

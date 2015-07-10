@@ -12,38 +12,30 @@
 
             module(function(_$provide_) {
                 $provide = _$provide_;
-            });            
+            });        
         });
 
         beforeEach(inject(function($q) {
             repository = {
                 getCompanies: function() {
-                    var deferred = $q.defer();
-                    deferred.resolve([{}]);
-                    return deferred.promise;
+                    return $q.when([{}]);
                 },
                 deleteCompany: function() {
-                    var deferred = $q.defer();
-                    deferred.resolve();
-                    return deferred.promise;
+                    return $q.when({});
                 },
                 createCompany: function() {
-                    var deferred = $q.defer();
-                    deferred.resolve();
-                    return deferred.promise;
+                    return $q.when({});
                 },
                 updateCompany: function() {
-                    var deferred = $q.defer();
-                    deferred.resolve();
-                    return deferred.promise;
+                    return $q.when({});
                 }
             };
 
             $provide.value('DataRepository', repository);  
+            })
+        );                    
 
-        }));
-
-        it('Fetches list of companies', inject(function($controller, $rootScope) {
+        it('Fetches list of companies', inject(function($q, $controller, $rootScope) {
             spyOn(repository, 'getCompanies').andCallThrough();
 
             var scope = $rootScope.$new();
@@ -53,7 +45,9 @@
             expect(repository.getCompanies).toHaveBeenCalled();
         }));
 
-        it('Binds the retrieved companies to the grid', inject(function($controller, $rootScope) {
+        it('Binds the retrieved companies to the grid', inject(function($q, $controller, $rootScope) {
+            spyOn(repository, 'getCompanies').andCallThrough();
+
             var scope = $rootScope.$new();
             $controller('CompanyController', {$scope: scope});       
 

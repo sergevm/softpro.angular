@@ -2,57 +2,35 @@
 (function () {
     'use strict';
     
-    angular.module('app').service('DataRepository', ['$q', '$http', 'SERVICE_BASE_URL', function ($q, $http, SERVICE_BASE_URL) {
+    angular.module('app').service('DataRepository', ['$http', 'SERVICE_BASE_URL', function ($http, SERVICE_BASE_URL) {
         function urlFor(specificPart) {
             return SERVICE_BASE_URL + specificPart;
         }
 
         return {
             getCompanies: function () {
-                var deferred = $q.defer();
-                $http.get(urlFor('company'))
-                    .success(function (data) {
-                        deferred.resolve(data);
-                    })
-                    .error(deferred.reject);
-
-                return deferred.promise;
+                return $http.get(urlFor('company')).then(
+                    function(payload) { 
+                        return payload.data; 
+                    });
             },
             getCompany: function (id) {
-                var deferred = $q.defer();
-                $http.get(urlFor('company/' + id))
-                    .success(function (data) {
-                        deferred.resolve(data);
-                    })
-                    .error(deferred.reject);
-
-                return deferred.promise;
+                return $http.get(urlFor('company/' + id)).then(
+                    function(payload) { 
+                        return payload.data; 
+                    });
             },
             updateCompany: function (company) {
-                var deferred = $q.defer();
-                $http.put(urlFor('company/' + company.Id), company)
-                    .success(deferred.resolve)
-                    .error(deferred.reject);
-
-                return deferred.promise;
+                return $http.put(urlFor('company/' + company.Id), company);
             },
             createCompany: function (company) {
-                var deferred = $q.defer();
-                $http.post(urlFor('company'), company)
-                    .success(function (data) {
-                        deferred.resolve(data);
-                    })
-                    .error(deferred.reject);
-
-                return deferred.promise;
+                return $http.post(urlFor('company'), company)
+                    .then(function (payload) {
+                        return payload.data;
+                    });
             },
             deleteCompany: function (company) {
-                var deferred = $q.defer();
-                $http.delete(urlFor('company/' + company.Id))
-                    .success(deferred.resolve)
-                    .error(deferred.reject);
-
-                return deferred.promise;
+                return $http.delete(urlFor('company/' + company.Id));
             }
         };
     }]);
